@@ -5,7 +5,7 @@
 This is the homework for Tech Blog.
 
 ## Link for the repo
-[My homework](https://elcinkoyuncu.github.io/tech-blog/)
+[My homework](https://tech-blog-ek.herokuapp.com/)
 
 ## Screenshot for the application
 
