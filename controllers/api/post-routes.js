@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
+const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
 // get all posts
 router.get('/', (req, res) => {
+  console.log('======================');
   Post.findAll({
     attributes: ['id', 'title', 'post_text', 'created_at'],
     order: [['created_at', 'DESC']],

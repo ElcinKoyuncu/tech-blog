@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+
 
 // Get All users
 router.get('/', (req, res) => {
@@ -28,8 +28,16 @@ router.get('/:id', (req, res) => {
       },
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'created_at']
+        attributes: ['id', 'comment_text', 'created_at'],
+        include: {
+          model: Post,
+          attributes: ['title']
       }
+      },
+      {
+        model: Post,
+        attributes: ['title'],
+    }
     ]
   })
   .then(dbUserData => {
@@ -37,6 +45,7 @@ router.get('/:id', (req, res) => {
       res.status(404).json({ message: 'No User found with this id' });
       return;
     }
+    res.json(dbUserData);
   })
   .catch(err => {
     console.log(err);
